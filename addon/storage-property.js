@@ -21,17 +21,33 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.                                    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-export default function(propertyName, defaultValue) {
+function supportsStorageType(storageType) {
+  return window[storageType] !== undefined;
+}
+
+function storageProperty(storageType, propertyName, defaultValue) {
+  if (!supportsStorageType(storageType)) {
+    console.warn('Browser does not support %s', storageType);
+    window[storageType] = {};
+  }
+
   return {
     get() {
-      if (window.localStorage[propertyName] === undefined) {
-        window.localStorage[propertyName] = JSON.stringify(defaultValue);
+      if (window[storageType][propertyName] === undefined) {
+        window[storageType][propertyName] = JSON.stringify(defaultValue);
       }
-      return JSON.parse(window.localStorage[propertyName]);
+      return JSON.parse(window[storageType][propertyName]);
     },
     set(key, value) {
-      window.localStorage[propertyName] = JSON.stringify(value);
+      window[storageType][propertyName] = JSON.stringify(value);
       return value;
     }
   };
 }
+
+export const supportsLocalStorage = supportsStorageType('localStorage');
+export const localStorageProperty =
+  storageProperty.bind(window, 'localStorage');
+export const supportsSessionStorage = supportsStorageType('sessionStorage');
+export const sessionStorageProperty =
+  storageProperty.bind(window, 'sessionStorage');
