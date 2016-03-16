@@ -1,7 +1,7 @@
 {
   "name": "ember-local-storage-proxy",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Library for wrapping HTML5 local storage values as Ember properties.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/jichu4n/ember-local-storage-proxy",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Chuan Ji",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
