@@ -22,15 +22,15 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import {
-  supportsLocalStorage,
+  isLocalStorageSupported,
   localStorageProperty,
-  supportsSessionStorage,
+  isSessionStorageSupported,
   sessionStorageProperty
 } from './storage-property';
 
 export {
-  supportsLocalStorage,
+  isLocalStorageSupported,
   localStorageProperty,
-  supportsSessionStorage,
+  isSessionStorageSupported,
   sessionStorageProperty
 };

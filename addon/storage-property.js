@@ -21,12 +21,12 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.                                    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-function supportsStorageType(storageType) {
+function isStorageTypeSupported(storageType) {
   return window[storageType] !== undefined;
 }
 
 function storageProperty(storageType, propertyName, defaultValue) {
-  if (!supportsStorageType(storageType)) {
+  if (!isStorageTypeSupported(storageType)) {
     console.warn('Browser does not support %s', storageType);
     window[storageType] = {};
   }
@@ -45,9 +45,12 @@ function storageProperty(storageType, propertyName, defaultValue) {
   };
 }
 
-export const supportsLocalStorage = supportsStorageType('localStorage');
+export const isLocalStorageSupported =
+  isStorageTypeSupported('localStorage');
 export const localStorageProperty =
   storageProperty.bind(window, 'localStorage');
-export const supportsSessionStorage = supportsStorageType('sessionStorage');
+
+export const isSessionStorageSupported =
+  isStorageTypeSupported('sessionStorage');
 export const sessionStorageProperty =
   storageProperty.bind(window, 'sessionStorage');
