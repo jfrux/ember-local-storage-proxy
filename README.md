@@ -40,8 +40,8 @@ export default Ember.Service.extend({
   // with a default value of false.
   enableFoo: Ember.computed(localStorageProxy('settings/enableFoo', false)),
 
-  // Define a property synced with window.sessionStorage['userId'], with a default
-  // value of undefined.
+  // Define a property synced with window.sessionStorage['userId'], with a
+  // default value of undefined.
   userId: Ember.computed(sessionStorageProxy()),
   
   toggleFoo() {
@@ -50,7 +50,7 @@ export default Ember.Service.extend({
     this.set('enableFoo', !this.get('enableFoo'));
   },
 
-  // This will be fired when enableFoo is updated, as usual.
+  // This will fire when enableFoo is updated, as expected.
   onFooChanged: Ember.observer('enableFoo', function() {
     console.log('Foo is %s', this.get('enableFoo') ? 'on' : 'off');
   })
