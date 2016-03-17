@@ -29,10 +29,8 @@ like this:
 // services/settings.js
 
 import Ember from 'ember';
-import {
-  localStorageProperty,
-  sessionStorageProperty
-} from 'ember-local-storage-proxy';
+import { localStorageProperty, sessionStorageProperty }
+  from 'ember-local-storage-proxy';
 
 export default Ember.Service.extend({
   enableFoo: Ember.computed(localStorageProperty('enableFoo', false)),
@@ -78,7 +76,7 @@ and `sessionStorageProperty`.
 Properties defined using `localStorageProperty` / `sessionStorageProperty`
 serialize all values to strings via
 [`JSON.Stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
-for storage. When reading back, they are deserialized via
+for storage. When read back, they are deserialized via
 [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse).
 
 For builtin data types, including arrays and plain objects, the encoding and
