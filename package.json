@@ -1,6 +1,6 @@
 {
   "name": "ember-local-storage-proxy",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Library for wrapping HTML5 local storage values as Ember properties.",
   "directories": {
     "doc": "doc",

@@ -25,24 +25,26 @@ function isStorageTypeSupported(storageType) {
   return window[storageType] !== undefined;
 }
 
-function storageProperty(storageType, propertyName, defaultValue) {
+function storageProxy(storageType, storageKey, defaultValue) {
   if (!isStorageTypeSupported(storageType)) {
     console.warn('Browser does not support %s', storageType);
     window[storageType] = {};
   }
 
   return {
-    get() {
-      if (!(propertyName in window[storageType])) {
-        window[storageType][propertyName] = JSON.stringify(defaultValue);
+    get(propertyName) {
+      var key = storageKey === undefined ? propertyName : storageKey;
+      if (!(key in window[storageType])) {
+        window[storageType][key] = JSON.stringify(defaultValue);
       }
-      if (window[storageType][propertyName] === 'undefined') {
+      if (window[storageType][key] === 'undefined') {
         return undefined;
       }
-      return JSON.parse(window[storageType][propertyName]);
+      return JSON.parse(window[storageType][key]);
     },
-    set(key, value) {
-      window[storageType][propertyName] = JSON.stringify(value);
+    set(propertyName, value) {
+      var key = storageKey === undefined ? propertyName : storageKey;
+      window[storageType][key] = JSON.stringify(value);
       return value;
     }
   };
@@ -50,10 +52,10 @@ function storageProperty(storageType, propertyName, defaultValue) {
 
 export const isLocalStorageSupported =
   isStorageTypeSupported('localStorage');
-export const localStorageProperty =
-  storageProperty.bind(window, 'localStorage');
+export const localStorageProxy =
+  storageProxy.bind(window, 'localStorage');
 
 export const isSessionStorageSupported =
   isStorageTypeSupported('sessionStorage');
-export const sessionStorageProperty =
-  storageProperty.bind(window, 'sessionStorage');
+export const sessionStorageProxy =
+  storageProxy.bind(window, 'sessionStorage');

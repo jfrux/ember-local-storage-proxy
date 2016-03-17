@@ -23,14 +23,14 @@
 
 import {
   isLocalStorageSupported,
-  localStorageProperty,
+  localStorageProxy,
   isSessionStorageSupported,
-  sessionStorageProperty
-} from './storage-property';
+  sessionStorageProxy
+} from './storage-proxy';
 
 export {
   isLocalStorageSupported,
-  localStorageProperty,
+  localStorageProxy,
   isSessionStorageSupported,
-  sessionStorageProperty
+  sessionStorageProxy
 };
