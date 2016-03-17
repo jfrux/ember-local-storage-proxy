@@ -33,7 +33,12 @@ import { localStorageProperty, sessionStorageProperty }
   from 'ember-local-storage-proxy';
 
 export default Ember.Service.extend({
+  // Define a property synced with window.localStorage.enableFoo, with a default
+  // value of false.
   enableFoo: Ember.computed(localStorageProperty('enableFoo', false)),
+
+  // Define a property synced with window.sessionStorage.userId, with a default
+  // value of undefined.
   userId: Ember.computed(sessionStorageProperty('userId')),
   
   toggleFoo() {
@@ -49,7 +54,7 @@ export default Ember.Service.extend({
   })
 });
 ```
-To use the synced property in, e.g., a component:
+To use a synced property in, e.g., a component:
 ```javascript
 // components/my-component/component.js
 import Ember from 'ember';
