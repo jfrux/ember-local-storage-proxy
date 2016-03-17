@@ -73,6 +73,20 @@ and any observers will fail to fire.  As a result, you should always access or
 update the value through the synced property defined via `localStorageProperty`
 and `sessionStorageProperty`.
 
+## Encoding / Decoding
+
+Properties defined using `localStorageProperty` / `sessionStorageProperty`
+serialize all values to strings via
+[`JSON.Stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+for storage. When reading back, they are deserialized via
+[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse).
+
+For builtin data types, including arrays and plain objects, the encoding and
+decoding should work transparently.
+
+For custom data types, you would need to first serialize the values to strings
+or JSON objects before storing them in a synced property.
+
 ## Compatibility
 
 Although [browser support for HTML5 local
