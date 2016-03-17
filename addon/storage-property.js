@@ -33,8 +33,11 @@ function storageProperty(storageType, propertyName, defaultValue) {
 
   return {
     get() {
-      if (window[storageType][propertyName] === undefined) {
+      if (!(propertyName in window[storageType])) {
         window[storageType][propertyName] = JSON.stringify(defaultValue);
+      }
+      if (window[storageType][propertyName] === 'undefined') {
+        return undefined;
       }
       return JSON.parse(window[storageType][propertyName]);
     },
